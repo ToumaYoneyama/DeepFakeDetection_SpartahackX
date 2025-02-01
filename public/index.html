@@ -1,15 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool File Upload</title>
+<style>
+/* Global styles */
+body {
+margin: 0;
+padding: 0;
+font-family: 'Arial', sans-serif;
+height: 100vh;
+background: linear-gradient(135deg, #6b7af0, #7af4c5); /* Gradient background */
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+color: white;
+}
+
+/* Hero section */
+.hero {
+width: 100%;
+max-width: 600px;
+background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
+padding: 40px;
+border-radius: 15px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+font-size: 3em;
+margin-bottom: 20px;
+font-weight: bold;
+}
+
+p {
+font-size: 1.2em;
+margin-bottom: 40px;
+}
+
+/* Upload button styles */
+.upload-btn {
+background-color: #4caf50;
+color: white;
+padding: 15px 30px;
+font-size: 1.5em;
+border: none;
+border-radius: 50px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+background-color: #45a049;
+transform: scale(1.1);
+}
+
+input[type="file"] {
+display: none; /* Hide the default file input */
+}
+
+.file-label {
+font-size: 1.2em;
+color: #fff;
+display: inline-block;
+cursor: pointer;
+padding: 15px 25px;
+border-radius: 50px;
+border: 2px solid #fff;
+transition: all 0.3s ease;
+}
+
+.file-label:hover {
+background-color: #fff;
+color: #333;
+}
+
+/* Footer */
+footer {
+position: absolute;
+bottom: 10px;
+font-size: 1em;
+color: #fff;
+text-align: center;
+width: 100%;
+}
+</style>
 </head>
 <body>
-    <h1>Upload a File</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".wav,.mp3,.mp4" required>
-        <button type="submit">Upload</button>
-    </form>
+<div class="hero">
+<h1>Upload Your File</h1>
+<p>Select a file to upload, and we'll take care of the rest!</p>
+
+<!-- File Upload Section -->
+<form id="uploadForm" enctype="multipart/form-data">
+<label class="file-label" for="file">Choose File</label>
+<input type="file" name="file" id="file" required>
+<br><br>
+<button class="upload-btn" type="submit">Upload</button>
+</form>
+</div>
+
+<footer>
+<p>Powered by Your Company</p>
+</footer>
+
+<script>
+// Handle the form submission
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+event.preventDefault(); // Prevent default form submission
+
+const formData = new FormData();
+const fileInput = document.getElementById('file');
+formData.append('file', fileInput.files[0]);
+
+// You can add a fetch request here to send the file to the server
+// For now, we will just log to the console
+console.log('File uploaded:', fileInput.files[0].name);
+});
+</script>
 </body>
 </html>
